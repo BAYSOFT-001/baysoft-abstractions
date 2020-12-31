@@ -1,6 +1,7 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Core.Domain.Interfaces.Services;
+using BAYSOFT.Abstractions.Core.Domain.Validations;
 using FluentValidation;
 using NetDevPack.Specification;
 using System.Collections.Generic;
@@ -11,9 +12,9 @@ namespace BAYSOFT.Abstractions.Core.Domain.Services
     public abstract class DomainService<TEntity> : IDomainService<TEntity>
         where TEntity : DomainEntity
     {
-        private AbstractValidator<TEntity> EntityValidator { get; set; }
-        private SpecValidator<TEntity> DomainValidator { get; set; }
-        public DomainService(AbstractValidator<TEntity> entityValidator, SpecValidator<TEntity> domainValidator)
+        private EntityValidator<TEntity> EntityValidator { get; set; }
+        private DomainValidator<TEntity> DomainValidator { get; set; }
+        public DomainService(EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator)
         {
             EntityValidator = entityValidator;
             DomainValidator = domainValidator;
