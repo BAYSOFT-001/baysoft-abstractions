@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities
@@ -11,6 +12,9 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities
 
     public class DomainEntity
     {
-
+        public void Update(DomainEntity updatedEntity)
+        {
+            this.GetType().GetProperties().ToList().ForEach(property => property.SetValue(this, updatedEntity));
+        }
     }
 }
