@@ -14,7 +14,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities
     {
         public void Update(DomainEntity updatedEntity)
         {
-            this.GetType().GetProperties().ToList().ForEach(property => property.SetValue(this, updatedEntity));
+            this.GetType().GetProperties().ToList().ForEach(property => property.SetValue(this, updatedEntity.GetType().GetProperty(property.Name).GetValue(updatedEntity)));
         }
     }
 }
