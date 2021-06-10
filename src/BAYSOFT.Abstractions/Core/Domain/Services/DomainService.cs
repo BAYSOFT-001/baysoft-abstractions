@@ -5,6 +5,7 @@ using BAYSOFT.Abstractions.Core.Domain.Validations;
 using FluentValidation;
 using NetDevPack.Specification;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Services
@@ -20,42 +21,36 @@ namespace BAYSOFT.Abstractions.Core.Domain.Services
             DomainValidator = domainValidator;
         }
 
-        protected void ValidateEntity(TEntity entity)
+        protected bool ValidateEntity(TEntity entity, bool throwException = true, string message = null)
         {
-            var validateResult = EntityValidator.Validate(entity);
-            if (!validateResult.IsValid)
+            var result = this.EntityValidator.Validate(entity);
+
+            if (!result.IsValid && throwException)
             {
-                var entityExceptions = new List<EntityValidationException>();
-
-                foreach (var error in validateResult.Errors)
-                {
-                    var errorMessage = string.Format(error.ErrorMessage, error.PropertyName);
-                    entityExceptions.Add(new EntityValidationException(error.PropertyName, errorMessage));
-                }
-
-                var exception = new BusinessException("Operation failed in entity validation!", entityExceptions, null);
-
-                throw exception;
+                throw new BusinessException(
+                    message ?? "Operation failed in entity validation!",
+                    result.Errors.Select(error =>
+                        new EntityValidationException(string.Format(error.ErrorMessage, error.PropertyName))
+                    ).ToList());
             }
+
+            return result.IsValid;
         }
 
-        protected void ValidateDomain(TEntity entity)
+        protected bool ValidateDomain(TEntity entity, bool throwException = true, string message = null)
         {
-            var validateResult = DomainValidator.Validate(entity);
-            if (!validateResult.IsValid)
+            var result = this.EntityValidator.Validate(entity);
+
+            if (!result.IsValid && throwException)
             {
-                var domainExceptions = new List<DomainValidationException>();
-
-                foreach (var error in validateResult.Errors)
-                {
-                    var errorMessage = string.Format(error.ErrorMessage, error.PropertyName);
-                    domainExceptions.Add(new DomainValidationException(errorMessage));
-                }
-
-                var exception = new BusinessException("Operation failed in domain validation!", null, domainExceptions);
-
-                throw exception;
+                throw new BusinessException(
+                    message ?? "Operation failed in domain validation!",
+                    result.Errors.Select(error =>
+                        new DomainValidationException(string.Format(error.ErrorMessage, error.PropertyName))
+                    ).ToList());
             }
+
+            return result.IsValid;
         }
         public abstract Task Run(TEntity entity);
     }
