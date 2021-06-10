@@ -22,7 +22,7 @@ namespace BAYSOFT.Abstractions.Core.Application
                 throw new BusinessException(
                     message ?? "Operation failed in request validation!",
                     result.Errors.Select(error =>
-                        new RequestValidationException(string.Format(error.ErrorMessage, error.PropertyName))
+                        new RequestValidationException(error.PropertyName, string.Format(error.ErrorMessage, error.PropertyName))
                     ).ToList());
             }
 

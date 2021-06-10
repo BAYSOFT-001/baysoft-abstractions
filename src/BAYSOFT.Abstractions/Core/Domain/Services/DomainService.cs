@@ -30,7 +30,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Services
                 throw new BusinessException(
                     message ?? "Operation failed in entity validation!",
                     result.Errors.Select(error =>
-                        new EntityValidationException(string.Format(error.ErrorMessage, error.PropertyName))
+                        new EntityValidationException(error.PropertyName, string.Format(error.ErrorMessage, error.PropertyName))
                     ).ToList());
             }
 
