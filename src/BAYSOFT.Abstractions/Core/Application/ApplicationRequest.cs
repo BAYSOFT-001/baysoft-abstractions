@@ -13,6 +13,10 @@ namespace BAYSOFT.Abstractions.Core.Application
         where TResponse : ApplicationResponse<TEntity>
     {
         protected ApplicationRequestValidator<TEntity> Validator { get; set; }
+        public ApplicationRequest()
+        {
+            Validator = new ApplicationRequestValidator<TEntity>();
+        }
         public bool IsValid(bool throwException = true, string message = null)
         {
             var result = this.Validator.Validate(this.Model);
