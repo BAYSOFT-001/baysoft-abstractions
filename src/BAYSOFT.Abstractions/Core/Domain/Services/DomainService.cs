@@ -39,7 +39,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Services
 
         protected bool ValidateDomain(TEntity entity, bool throwException = true, string message = null)
         {
-            var result = this.EntityValidator.Validate(entity);
+            var result = this.DomainValidator.Validate(entity);
 
             if (!result.IsValid && throwException)
             {
