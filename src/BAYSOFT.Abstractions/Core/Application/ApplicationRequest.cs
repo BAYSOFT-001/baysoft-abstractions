@@ -3,7 +3,6 @@ using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Core.Domain.Validations;
 using MediatR;
 using ModelWrapper;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BAYSOFT.Abstractions.Core.Application

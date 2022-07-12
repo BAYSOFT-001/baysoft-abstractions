@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Version>1.0.7-beta</Version>
+    <Version>1.0.8-beta</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</PackageProjectUrl>
@@ -14,6 +14,8 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.1.0" />
     <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="6.0.6" />
     <PackageReference Include="ModelWrapper" Version="3.0.0" />
     <PackageReference Include="NetDevPack" Version="6.0.1" />
   </ItemGroup>

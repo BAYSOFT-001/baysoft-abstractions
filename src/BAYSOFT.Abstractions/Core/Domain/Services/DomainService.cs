@@ -2,9 +2,6 @@
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Core.Domain.Interfaces.Services;
 using BAYSOFT.Abstractions.Core.Domain.Validations;
-using FluentValidation;
-using NetDevPack.Specification;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
