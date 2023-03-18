@@ -2,6 +2,7 @@
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Core.Domain.Validations;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using ModelWrapper;
 using System.Linq;
 
@@ -11,9 +12,11 @@ namespace BAYSOFT.Abstractions.Core.Application
         where TEntity : DomainEntity
         where TResponse : ApplicationResponse<TEntity>
     {
+        private IStringLocalizer Localizer { get; set; }
         protected ApplicationRequestValidator<TEntity> Validator { get; set; }
-        public ApplicationRequest()
+        public ApplicationRequest(IStringLocalizer localizer)
         {
+            Localizer = localizer;
             Validator = new ApplicationRequestValidator<TEntity>();
         }
         public bool IsValid(bool throwException = true, string message = null)
@@ -23,9 +26,9 @@ namespace BAYSOFT.Abstractions.Core.Application
             if (!result.IsValid && throwException)
             {
                 throw new BusinessException(
-                    message ?? "Operation failed in request validation!",
+                    message ?? Localizer["Operation failed in request validation!"],
                     result.Errors.Select(error =>
-                        new RequestValidationException(error.PropertyName, string.Format(error.ErrorMessage, error.PropertyName))
+                        new RequestValidationException(Localizer[error.PropertyName], string.Format(Localizer[error.ErrorMessage], Localizer[error.PropertyName]))
                     ).ToList());
             }
 
