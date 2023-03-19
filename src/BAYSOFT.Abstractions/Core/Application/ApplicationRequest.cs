@@ -12,23 +12,21 @@ namespace BAYSOFT.Abstractions.Core.Application
         where TEntity : DomainEntity
         where TResponse : ApplicationResponse<TEntity>
     {
-        private IStringLocalizer Localizer { get; set; }
         protected ApplicationRequestValidator<TEntity> Validator { get; set; }
-        public ApplicationRequest(IStringLocalizer localizer)
+        public ApplicationRequest()
         {
-            Localizer = localizer;
             Validator = new ApplicationRequestValidator<TEntity>();
         }
-        public bool IsValid(bool throwException = true, string message = null)
+        public bool IsValid(IStringLocalizer localizer, bool throwException = true, string message = null)
         {
             var result = this.Validator.Validate(this.Model);
             
             if (!result.IsValid && throwException)
             {
                 throw new BusinessException(
-                    message ?? Localizer["Operation failed in request validation!"],
+                    message ?? localizer["Operation failed in request validation!"],
                     result.Errors.Select(error =>
-                        new RequestValidationException(Localizer[error.PropertyName], string.Format(Localizer[error.ErrorMessage], Localizer[error.PropertyName]))
+                        new RequestValidationException(localizer[error.PropertyName], string.Format(localizer[error.ErrorMessage], localizer[error.PropertyName]))
                     ).ToList());
             }
 
