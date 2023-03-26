@@ -19,7 +19,7 @@ namespace BAYSOFT.Abstractions.Core.Application
         }
         public bool IsValid(IStringLocalizer localizer, bool throwException = true, string message = null)
         {
-            var result = this.Validator.Validate(this.Model);
+            var result = this.Validator.Validate(this.GetModel());
             
             if (!result.IsValid && throwException)
             {
