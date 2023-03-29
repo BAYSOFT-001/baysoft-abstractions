@@ -9,6 +9,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Copyright>https://github.com/BAYSOFT-001</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,7 +27,7 @@
       <PackagePath></PackagePath>
     </None>
     <None Include="..\..\README.md" Link="README.md">
-      <PackagePath></PackagePath>
+      <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
   </ItemGroup>
