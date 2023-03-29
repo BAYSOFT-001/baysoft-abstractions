@@ -2,19 +2,21 @@
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Core.Domain.Interfaces.Services;
 using BAYSOFT.Abstractions.Core.Domain.Validations;
+using MediatR;
 using Microsoft.Extensions.Localization;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Services
 {
-    public abstract class DomainService<TEntity> : IDomainService<TEntity>
+    public abstract class DomainServiceBase<TEntity>
         where TEntity : DomainEntity
     {
         private IStringLocalizer Localizer { get; set; }
         private EntityValidator<TEntity> EntityValidator { get; set; }
         private DomainValidator<TEntity> DomainValidator { get; set; }
-        public DomainService(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator)
+        public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator)
         {
             Localizer = localizer;
             EntityValidator = entityValidator;
@@ -52,6 +54,19 @@ namespace BAYSOFT.Abstractions.Core.Domain.Services
 
             return result.IsValid;
         }
+    }
+    public abstract class DomainService<TEntity> : DomainServiceBase<TEntity>, IDomainService<TEntity>
+        where TEntity : DomainEntity
+    {
+        public DomainService(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
         public abstract Task Run(TEntity entity);
+    }
+    public abstract class DomainService<TEntity, TRequest> : DomainServiceBase<TEntity>, IDomainService<TEntity, TRequest>
+        where TEntity : DomainEntity
+        where TRequest : IRequest<TEntity>
+    {
+        public DomainService(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
+
+        public abstract Task<TEntity> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }
