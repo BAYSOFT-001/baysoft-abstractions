@@ -1,4 +1,6 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Exceptions;
+﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
+using BAYSOFT.Abstractions.Core.Domain.Exceptions;
+using ModelWrapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,35 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 {
     public static class ExceptionResponseHelper
     {
+        public static (int, int, WrapRequest<TEntity>, Dictionary<string, object>, string, long?) ExceptionResponse<TEntity>(WrapRequest<TEntity> request, Exception exception, string message = "Unsuccessful operation!", long? resultCount = null)
+            where TEntity : DomainEntity
+        {
+            if(exception is BusinessException)
+            {
+                var businessException = exception as BusinessException;
+                return (businessException.ExceptionCode, businessException.ExceptionInternalCode, request, MapBusinessExceptionToDictionary(businessException), message, resultCount);
+            }
+
+            if(exception is BaysoftException)
+            {
+                var baysoftException = exception as BaysoftException;
+                return (baysoftException.ExceptionCode, baysoftException.ExceptionInternalCode, request, MapBaysoftExceptionToDictionary(baysoftException), message, resultCount);
+            }
+
+            return (400, 400, request, MapExceptionToDictionary(exception), message, resultCount);
+        }
         public static Dictionary<string, object> MapExceptionToDictionary(Exception exception)
         {
+            if(exception is BusinessException)
+            {
+                return MapBusinessExceptionToDictionary(exception as BusinessException);
+            }
+
+            if(exception is BaysoftException)
+            {
+                return MapBaysoftExceptionToDictionary(exception as BaysoftException);
+            }
+
             Dictionary<string, object> exceptionDictionary = new Dictionary<string, object>();
 
             exceptionDictionary.Add("message", exception.Message);
