@@ -2,6 +2,7 @@
 using BAYSOFT.Abstractions.Crosscutting.Helpers;
 using ModelWrapper;
 using System;
+using System.Collections.Generic;
 
 namespace BAYSOFT.Abstractions.Core.Application
 {
@@ -38,6 +39,11 @@ namespace BAYSOFT.Abstractions.Core.Application
         }
         protected ApplicationResponse(WrapRequest<TEntity> request, Exception exception, string message = "Unsuccessful operation!", long? resultCount = null)
             : base(400, 400, request, ExceptionResponseHelper.MapExceptionToDictionary(exception), message, resultCount)
+        {
+        }
+
+        public ApplicationResponse(Tuple<int, int, WrapRequest<TEntity>, Dictionary<string, object>, string, long?> tuple)
+            : base(tuple.Item1, tuple.Item2, tuple.Item3, tuple.Item4, tuple.Item5, tuple.Item6)
         {
         }
     }

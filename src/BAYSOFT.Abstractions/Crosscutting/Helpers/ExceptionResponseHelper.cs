@@ -9,22 +9,22 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 {
     public static class ExceptionResponseHelper
     {
-        public static (int, int, WrapRequest<TEntity>, Dictionary<string, object>, string, long?) ExceptionResponse<TEntity>(WrapRequest<TEntity> request, Exception exception, string message = "Unsuccessful operation!", long? resultCount = null)
+        public static Tuple<int, int, WrapRequest<TEntity>, Dictionary<string, object>, string, long?> CreateTuple<TEntity>(WrapRequest<TEntity> request, Exception exception, string message = "Unsuccessful operation!", long? resultCount = null)
             where TEntity : DomainEntity
         {
             if(exception is BusinessException)
             {
                 var businessException = exception as BusinessException;
-                return (businessException.ExceptionCode, businessException.ExceptionInternalCode, request, MapBusinessExceptionToDictionary(businessException), message, resultCount);
+                return (businessException.ExceptionCode, businessException.ExceptionInternalCode, request, MapBusinessExceptionToDictionary(businessException), message, resultCount).ToTuple();
             }
 
             if(exception is BaysoftException)
             {
                 var baysoftException = exception as BaysoftException;
-                return (baysoftException.ExceptionCode, baysoftException.ExceptionInternalCode, request, MapBaysoftExceptionToDictionary(baysoftException), message, resultCount);
+                return (baysoftException.ExceptionCode, baysoftException.ExceptionInternalCode, request, MapBaysoftExceptionToDictionary(baysoftException), message, resultCount).ToTuple();
             }
 
-            return (400, 400, request, MapExceptionToDictionary(exception), message, resultCount);
+            return (400, 400, request, MapExceptionToDictionary(exception), message, resultCount).ToTuple();
         }
         public static Dictionary<string, object> MapExceptionToDictionary(Exception exception)
         {
