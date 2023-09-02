@@ -1,7 +1,7 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using NetDevPack.Specification;
 
-namespace BAYSOFT.Abstractions.Core.Domain.Validations
+namespace BAYSOFT.Abstractions.Core.Domain.Entities.Validations
 {
     public class DomainRule<TEntity> : Rule<TEntity>
         where TEntity : DomainEntity

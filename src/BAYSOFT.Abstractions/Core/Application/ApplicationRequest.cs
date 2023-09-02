@@ -1,6 +1,5 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
-using BAYSOFT.Abstractions.Core.Domain.Validations;
 using MediatR;
 using Microsoft.Extensions.Localization;
 using ModelWrapper;
