@@ -18,6 +18,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.5" />
+    <PackageReference Include="ModelWrapper" Version="4.0.2" />
     <PackageReference Include="NetDevPack" Version="6.1.0" />
   </ItemGroup>
 
@@ -30,10 +31,6 @@
       <PackagePath>\</PackagePath>
       <Pack>True</Pack>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\ModelWrapper\src\ModelWrapper\ModelWrapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
