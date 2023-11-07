@@ -13,9 +13,9 @@ namespace BAYSOFT.Abstractions.Infrastructures.Data
             Context = context;
         }
 
-        public IQueryable<TEntity> Query<TEntity>() where TEntity : DomainEntity
+        public virtual IQueryable<TEntity> Query<TEntity>() where TEntity : DomainEntity
         {
             return Context.Set<TEntity>().AsQueryable().AsNoTracking();
-        }
-    }
+		}
+	}
 }
