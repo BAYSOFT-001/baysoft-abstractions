@@ -16,6 +16,10 @@ namespace BAYSOFT.Abstractions.Core.Application
         {
             Validator = new ApplicationRequestValidator<TEntity>();
         }
+        public ApplicationRequest(TEntity entity) : base(entity)
+        {
+			Validator = new ApplicationRequestValidator<TEntity>();
+		}
         public bool IsValid(IStringLocalizer localizer, bool throwException = true, string message = null)
         {
             var result = this.Validator.Validate(this.GetModel());
