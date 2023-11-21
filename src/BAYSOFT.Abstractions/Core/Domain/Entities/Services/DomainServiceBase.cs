@@ -29,8 +29,10 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
                     result.Errors.Select(error =>
                         new EntityValidationException(
                             Localizer[error.PropertyName],
-                            string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues.Select(x => Localizer[x.Value.ToString()]).ToArray())
-                        )
+							error.FormattedMessagePlaceholderValues != null && error.FormattedMessagePlaceholderValues.Count > 0
+                            ? string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues.Select(x => Localizer[x.Value.ToString()]).ToArray())
+                            : Localizer[error.ErrorMessage]
+						)
                     ).ToList());
             }
 
@@ -47,8 +49,10 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
                     message ?? Localizer["Operation failed in domain validation!"],
                     result.Errors.Select(error =>
                         new DomainValidationException(
-                            string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues.Select(x => Localizer[x.Value.ToString()]).ToArray())
-                        )
+							error.FormattedMessagePlaceholderValues != null && error.FormattedMessagePlaceholderValues.Count > 0
+                            ? string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues?.Select(x => Localizer[x.Value.ToString()]).ToArray())
+                            : Localizer[error.ErrorMessage]
+						)
                     ).ToList());
             }
 

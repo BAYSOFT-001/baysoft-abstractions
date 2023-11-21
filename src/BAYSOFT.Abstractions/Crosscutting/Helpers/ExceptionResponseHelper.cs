@@ -54,7 +54,7 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 
             return exceptionDictionary;
         }
-        public static Dictionary<string, object> MapBaysoftExceptionToDictionary(IStringLocalizer localizer, BaysoftException baysoftException)
+        internal static Dictionary<string, object> MapBaysoftExceptionToDictionary(IStringLocalizer localizer, BaysoftException baysoftException)
         {
             Dictionary<string, object> exceptionDictionary = new Dictionary<string, object>
             {
@@ -68,7 +68,7 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 
             return exceptionDictionary;
         }
-        public static Dictionary<string, object> MapBusinessExceptionToDictionary(IStringLocalizer localizer, BusinessException businessException)
+        internal static Dictionary<string, object> MapBusinessExceptionToDictionary(IStringLocalizer localizer, BusinessException businessException)
         {
             Dictionary<string, object> exceptionDictionary = new Dictionary<string, object>
             {
