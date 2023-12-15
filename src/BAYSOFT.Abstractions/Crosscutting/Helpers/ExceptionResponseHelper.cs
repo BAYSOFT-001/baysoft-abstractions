@@ -1,5 +1,6 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
+using BAYSOFT.Abstractions.Crosscutting.Extensions;
 using Microsoft.Extensions.Localization;
 using ModelWrapper;
 using ModelWrapper.Utilities;
@@ -81,7 +82,7 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 
                 foreach (var group in businessException.RequestExceptions.GroupBy(exception => exception.SourceProperty))
                 {
-                    requestExceptionDictionary.Add(group.Key, businessException.RequestExceptions.Where(exception => exception.SourceProperty.Equals(group.Key)).Select(exception => localizer[exception.Message].ToString()).ToArray());
+                    requestExceptionDictionary.Add(group.Key.ToCamelCase(), businessException.RequestExceptions.Where(exception => exception.SourceProperty.Equals(group.Key)).Select(exception => localizer[exception.Message].ToString()).ToArray());
                 }
 
                 exceptionDictionary.Add(Constants.CONST_NOTIFICATIONS_REQUEST, requestExceptionDictionary);
@@ -93,7 +94,7 @@ namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 
                 foreach (var group in businessException.EntityExceptions.GroupBy(x => x.SourceProperty))
                 {
-                    entityExceptionDictionary.Add(group.Key, businessException.EntityExceptions.Where(exception => exception.SourceProperty.Equals(group.Key)).Select(x => localizer[x.Message].ToString()).ToArray());
+                    entityExceptionDictionary.Add(group.Key.ToCamelCase(), businessException.EntityExceptions.Where(exception => exception.SourceProperty.Equals(group.Key)).Select(x => localizer[x.Message].ToString()).ToArray());
                 }
 
                 exceptionDictionary.Add(Constants.CONST_NOTIFICATIONS_ENTITY, entityExceptionDictionary);
