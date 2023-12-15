@@ -28,7 +28,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 					message ?? Localizer["Operation failed in entity validation!"],
 					result.Errors.Select(error =>
 						new EntityValidationException(
-							Localizer[error.PropertyName],
+							error.PropertyName,
 							error.FormattedMessagePlaceholderValues != null && error.FormattedMessagePlaceholderValues.Count > 0
 							? string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues?.Select(x => Localizer[x.Value!= null ? x.Value.ToString() : ""]).ToArray())
 							: Localizer[error.ErrorMessage]
