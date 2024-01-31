@@ -1,13 +1,15 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using NetDevPack.Specification;
+﻿using BAYSOFT.Abstractions.Crosscutting.Specification;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Validations
 {
-    public class DomainRule<TEntity> : Rule<TEntity>
+	public class DomainRule<TEntity> : Rule<TEntity>
         where TEntity : DomainEntity
-    {
-        public DomainRule(Specification<TEntity> spec, string errorMessage) : base(spec, errorMessage)
+	{
+		private readonly Specification<TEntity> Specification;
+		public DomainRule(Specification<TEntity> specification, string errorMessage) : base(specification, errorMessage)
         {
+			Specification = specification;
         }
-    }
+
+	}
 }
