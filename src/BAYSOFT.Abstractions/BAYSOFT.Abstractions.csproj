@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Version>1.1.19</Version>
+    <Version>1.1.20</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</PackageProjectUrl>
@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="7.0.5" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="7.0.5" />
-    <PackageReference Include="ModelWrapper" Version="4.0.8" />
+    <PackageReference Include="ModelWrapper" Version="4.0.9" />
   </ItemGroup>
 
   <ItemGroup>
