@@ -1,6 +1,7 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities.Validations;
 using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using Microsoft.Extensions.Localization;
+using System;
 using System.Linq;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
@@ -11,6 +12,18 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 		private IStringLocalizer Localizer { get; set; }
 		private EntityValidator<TEntity> EntityValidator { get; set; }
 		private DomainValidator<TEntity> DomainValidator { get; set; }
+		public DomainServiceBase()
+		{
+		}
+		public DomainServiceBase(IStringLocalizer localizer)
+		{
+			Localizer = localizer;
+		}
+		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator)
+		{
+			Localizer = localizer;
+			EntityValidator = entityValidator;
+		}
 		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator)
 		{
 			Localizer = localizer;
@@ -20,6 +33,16 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 
 		protected bool ValidateEntity(TEntity entity, bool throwException = true, string message = null)
 		{
+			if (Localizer == null)
+			{
+				throw new ArgumentNullException(nameof(Localizer));
+			}
+
+			if (EntityValidator == null)
+			{
+				throw new ArgumentNullException(nameof(EntityValidator));
+			}
+
 			var result = EntityValidator.Validate(entity);
 
 			if (!result.IsValid && throwException)
@@ -41,6 +64,16 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 
 		protected bool ValidateDomain(TEntity entity, bool throwException = true, string message = null)
 		{
+			if (Localizer == null)
+			{
+				throw new ArgumentNullException(nameof(Localizer));
+			}
+
+			if (EntityValidator == null)
+			{
+				throw new ArgumentNullException(nameof(DomainValidator));
+			}
+
 			var result = DomainValidator.Validate(entity);
 
 			if (!result.IsValid && throwException)
