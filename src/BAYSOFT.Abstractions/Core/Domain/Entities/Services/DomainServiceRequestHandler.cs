@@ -10,8 +10,11 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
         where TEntity : DomainEntity
         where TRequest : DomainServiceRequest<TEntity>
     {
-        public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
+        public DomainServiceRequestHandler() : base() { }
+		public DomainServiceRequestHandler(IStringLocalizer localizer) : base(localizer) { }
+		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator) : base(localizer, entityValidator) { }
+		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
 
-        public abstract Task<TEntity> Handle(TRequest request, CancellationToken cancellationToken);
+		public abstract Task<TEntity> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }
