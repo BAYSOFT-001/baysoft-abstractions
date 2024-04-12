@@ -7,9 +7,10 @@ namespace BAYSOFT.Abstractions.Crosscutting.Specification;
 internal sealed class NotSpecification<T> : Specification<T>
 {
 	private readonly Specification<T> _specification;
-	public NotSpecification(Specification<T> specification)
+	public NotSpecification(Specification<T> specification):base()
 	{
 		_specification = specification;
+		SpecificationMessage = specification.ToString();
 	}
 	public override Expression<Func<T, bool>> ToExpression()
 	{

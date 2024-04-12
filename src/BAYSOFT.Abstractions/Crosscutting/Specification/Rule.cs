@@ -18,7 +18,10 @@ public class Rule<T>
 	{
 		bool isSatisfied = Specification.IsSatisfiedBy(model);
 
-		ErrorMessage = Specification.ToString();
+		if(string.IsNullOrWhiteSpace(ErrorMessage))
+		{
+			ErrorMessage = Specification.ToString();
+		}
 
 		return isSatisfied;
 	}
