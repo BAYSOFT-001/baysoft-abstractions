@@ -18,10 +18,10 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Package
-      run: dotnet pack -c Release -o . BAYSOFT.Abstractions/BAYSOFT.Abstractions.csproj
+      run: dotnet pack -c Release -o . src/BAYSOFT.Abstractions/BAYSOFT.Abstractions.csproj
     - name: Publish
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_MODEL_WRAPPER }} -s https://api.nuget.org/v3/index.json
