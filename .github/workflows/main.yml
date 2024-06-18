@@ -24,4 +24,4 @@ jobs:
     - name: Package
       run: dotnet pack -c Release -o . src/BAYSOFT.Abstractions/BAYSOFT.Abstractions.csproj
     - name: Publish
-      run: dotnet nuget push /home/runner/work/baysoft-abstractions/baysoft-abstractions/*.nupkg -k ${{ secrets.NUGET_MODEL_WRAPPER }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push /home/runner/work/baysoft-abstractions/baysoft-abstractions/*.nupkg -k ${{ secrets.NUGET_MODEL_WRAPPER }} -s https://api.nuget.org/v3/index.json --skip-duplicate
