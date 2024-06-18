@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Version>8.0.2</Version>
+    <Version>8.0.3</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</PackageProjectUrl>
@@ -35,6 +35,10 @@
 
   <ItemGroup>
     <Folder Include="Infrastructures\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\N.EntityFrameworkCore.Extensions\N.EntityFrameworkCore.Extensions.csproj" />
   </ItemGroup>
 
 </Project>
