@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BAYSOFT.Abstractions", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N.EntityFrameworkCore.Extensions", "src\N.EntityFrameworkCore.Extensions\N.EntityFrameworkCore.Extensions.csproj", "{C5E373E8-8279-4D81-AF22-DA4105E3AFB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N.EntityFrameworkCore.Extensions.Test", "src\N.EntityFrameworkCore.Extensions.Test\N.EntityFrameworkCore.Extensions.Test.csproj", "{8C48EFD9-A6F0-4175-9B46-C33BE4AB1EBA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{C5E373E8-8279-4D81-AF22-DA4105E3AFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5E373E8-8279-4D81-AF22-DA4105E3AFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5E373E8-8279-4D81-AF22-DA4105E3AFB3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C48EFD9-A6F0-4175-9B46-C33BE4AB1EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C48EFD9-A6F0-4175-9B46-C33BE4AB1EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C48EFD9-A6F0-4175-9B46-C33BE4AB1EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C48EFD9-A6F0-4175-9B46-C33BE4AB1EBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
