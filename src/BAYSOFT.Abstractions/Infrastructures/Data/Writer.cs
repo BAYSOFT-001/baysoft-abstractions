@@ -1,9 +1,9 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using BAYSOFT.Abstractions.Core.Domain.Interfaces.Infrastructures.Data;
-using BAYSOFT.Abstractions.EntityFrameworkCore.Extensions;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using N.EntityFrameworkCore.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
