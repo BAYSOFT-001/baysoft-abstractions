@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
-    public abstract class DomainServiceRequestHandler<TEntity, TRequest> : DomainServiceBase<TEntity>, IDomainService<TEntity, TRequest>
-        where TEntity : DomainEntity
+	public abstract class DomainServiceRequestHandler<TEntity, TRequest> : DomainServiceBase<TEntity>, IDomainService<TEntity, TRequest>
+        where TEntity : IDomainEntity
         where TRequest : DomainServiceRequest<TEntity>
     {
         public DomainServiceRequestHandler() : base() { }

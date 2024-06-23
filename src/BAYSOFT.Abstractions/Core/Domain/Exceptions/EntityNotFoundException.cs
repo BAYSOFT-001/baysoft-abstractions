@@ -5,7 +5,7 @@ using System;
 namespace BAYSOFT.Abstractions.Core.Domain.Exceptions
 {
 	public class EntityNotFoundException<TEntity> : EntityNotFoundException
-        where TEntity : DomainEntity
+        where TEntity : IDomainEntity
     {
         public EntityNotFoundException(IStringLocalizer localizer)
             : base(localizer, typeof(TEntity).Name)

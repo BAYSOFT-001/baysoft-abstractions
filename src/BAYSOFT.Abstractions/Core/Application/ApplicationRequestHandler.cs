@@ -1,15 +1,14 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using MediatR;
+﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Application
 {
-    public abstract class ApplicationRequestHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
+	public abstract class ApplicationRequestHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
         where TRequest : ApplicationRequest<TEntity, TResponse>
         where TResponse : ApplicationResponse<TEntity>
-        where TEntity : DomainEntity
-    {
+        where TEntity : class
+	{
         public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);
     }
 }

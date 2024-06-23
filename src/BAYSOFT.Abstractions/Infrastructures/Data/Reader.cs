@@ -1,11 +1,10 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using BAYSOFT.Abstractions.Core.Domain.Interfaces.Infrastructures.Data;
+﻿using BAYSOFT.Abstractions.Core.Domain.Interfaces.Infrastructures.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BAYSOFT.Abstractions.Infrastructures.Data
 {
-    public class Reader: IReader
+	public class Reader: IReader
     {
         public DbContext Context { get; private set; }
         public Reader(DbContext context)
@@ -13,8 +12,8 @@ namespace BAYSOFT.Abstractions.Infrastructures.Data
             Context = context;
         }
 
-        public virtual IQueryable<TEntity> Query<TEntity>() where TEntity : DomainEntity
-        {
+        public virtual IQueryable<TEntity> Query<TEntity>() where TEntity : class
+		{
             return Context.Set<TEntity>().AsQueryable().AsNoTracking();
 		}
 	}

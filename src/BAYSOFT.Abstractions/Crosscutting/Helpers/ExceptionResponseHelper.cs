@@ -1,5 +1,4 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using BAYSOFT.Abstractions.Core.Domain.Exceptions;
+﻿using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using BAYSOFT.Abstractions.Crosscutting.Extensions;
 using Microsoft.Extensions.Localization;
 using ModelWrapper;
@@ -10,11 +9,11 @@ using System.Linq;
 
 namespace BAYSOFT.Abstractions.Crosscutting.Helpers
 {
-    public static class ExceptionResponseHelper
+	public static class ExceptionResponseHelper
     {
         public static Tuple<int, int, WrapRequest<TEntity>, Dictionary<string, object>, Dictionary<string, object>, string, long?> CreateTuple<TEntity>(IStringLocalizer localizer, WrapRequest<TEntity> request, Exception exception, string message = "Unsuccessful operation!", long? resultCount = null)
-            where TEntity : DomainEntity
-        {
+            where TEntity : class
+		{
             string localizedMessage = localizer[message].ToString();
 
             if (exception is BusinessException)

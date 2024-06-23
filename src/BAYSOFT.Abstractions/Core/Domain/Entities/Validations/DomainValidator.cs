@@ -3,7 +3,7 @@
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Validations
 {
 	public abstract class DomainValidator<TEntity> : Validator<TEntity>
-        where TEntity : DomainEntity
+        where TEntity : IDomainEntity
     {
     }
 }

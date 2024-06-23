@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
-    public abstract class DomainService<TEntity> : DomainServiceBase<TEntity>, IDomainService<TEntity>
-        where TEntity : DomainEntity
+	public abstract class DomainService<TEntity> : DomainServiceBase<TEntity>, IDomainService<TEntity>
+        where TEntity : IDomainEntity
 	{
 		public DomainService() : base() { }
 		public DomainService(IStringLocalizer localizer) : base(localizer) { }

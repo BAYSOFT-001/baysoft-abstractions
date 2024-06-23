@@ -7,7 +7,7 @@ using System.Linq;
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
 	public abstract class DomainServiceBase<TEntity>
-		where TEntity : DomainEntity
+		where TEntity : IDomainEntity
 	{
 		private IStringLocalizer Localizer { get; set; }
 		private EntityValidator<TEntity> EntityValidator { get; set; }

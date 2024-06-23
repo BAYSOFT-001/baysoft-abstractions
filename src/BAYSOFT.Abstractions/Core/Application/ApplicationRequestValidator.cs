@@ -1,10 +1,9 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace BAYSOFT.Abstractions.Core.Application
 {
-    public class ApplicationRequestValidator<TEntity> : AbstractValidator<TEntity>
-        where TEntity : DomainEntity
-    {
+	public class ApplicationRequestValidator<TEntity> : AbstractValidator<TEntity>
+        where TEntity : class
+	{
     }
 }

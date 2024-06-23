@@ -1,11 +1,10 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using ModelWrapper;
+﻿using ModelWrapper;
 using System;
 using System.Collections.Generic;
 
 namespace BAYSOFT.Abstractions.Core.Application
 {
-    public abstract class ApplicationResponse : WrapResponse
+	public abstract class ApplicationResponse : WrapResponse
     {
         protected ApplicationResponse() : base() { }
 
@@ -15,8 +14,8 @@ namespace BAYSOFT.Abstractions.Core.Application
         }
     }
     public abstract class ApplicationResponse<TEntity> : WrapResponse<TEntity>
-        where TEntity : DomainEntity
-    {
+        where TEntity : class
+	{
         protected ApplicationResponse()
         {
         }

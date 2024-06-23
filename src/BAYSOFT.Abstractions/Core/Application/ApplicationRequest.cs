@@ -1,5 +1,4 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using BAYSOFT.Abstractions.Core.Domain.Exceptions;
+﻿using BAYSOFT.Abstractions.Core.Domain.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Localization;
 using ModelWrapper;
@@ -7,9 +6,9 @@ using System.Linq;
 
 namespace BAYSOFT.Abstractions.Core.Application
 {
-    public abstract class ApplicationRequest<TEntity, TResponse> : WrapRequest<TEntity>, IRequest<TResponse>
-        where TEntity : DomainEntity
-        where TResponse : ApplicationResponse<TEntity>
+	public abstract class ApplicationRequest<TEntity, TResponse> : WrapRequest<TEntity>, IRequest<TResponse>
+        where TEntity : class
+		where TResponse : ApplicationResponse<TEntity>
     {
         protected ApplicationRequestValidator<TEntity> Validator { get; set; }
         public ApplicationRequest()

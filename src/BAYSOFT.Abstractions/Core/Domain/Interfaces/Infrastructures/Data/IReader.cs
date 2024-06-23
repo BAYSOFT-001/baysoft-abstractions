@@ -1,10 +1,9 @@
-﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
-using System.Linq;
+﻿using System.Linq;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Interfaces.Infrastructures.Data
 {
-    public interface IReader
+	public interface IReader
     {
-        public IQueryable<TEntity> Query<TEntity>() where TEntity : DomainEntity;
+        public IQueryable<TEntity> Query<TEntity>() where TEntity : class;
     }
 }
