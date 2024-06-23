@@ -3,7 +3,7 @@
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Specifications
 {
     public abstract class DomainSpecification<TEntity> : Specification<TEntity>
-        where TEntity : IDomainEntity
+        where TEntity : IDomainEntityBase
     {
     }
 }
