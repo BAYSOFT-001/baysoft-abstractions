@@ -1,18 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using FluentValidation.Results;
+using System;
+using System.Collections.Generic;
 
 namespace BAYSOFT.Abstractions.Crosscutting.Specification;
 
-public class Validator<T>
+public class Validator<TKey, TEntity>
+	where TEntity : IDomainEntity<TKey>
+	where TKey : IEquatable<TKey>
 {
-	private readonly Dictionary<string, Rule<T>> _validations = new Dictionary<string, Rule<T>>();
+	private readonly Dictionary<string, Rule<TEntity>> _validations = new Dictionary<string, Rule<TEntity>>();
 
-	public ValidationResult Validate(T obj)
+	public ValidationResult Validate(TEntity obj)
 	{
 		ValidationResult validationResult = new ValidationResult();
 		foreach (string key in _validations.Keys)
 		{
-			Rule<T> rule = _validations[key];
+			Rule<TEntity> rule = _validations[key];
 			if (!rule.Validate(obj))
 			{
 				validationResult.Errors.Add(new ValidationFailure(obj.GetType().Name, rule.ErrorMessage));
@@ -22,7 +26,7 @@ public class Validator<T>
 		return validationResult;
 	}
 
-	protected void Add(string name, Rule<T> rule)
+	protected void Add(string name, Rule<TEntity> rule)
 	{
 		_validations.Add(name, rule);
 	}
@@ -32,7 +36,7 @@ public class Validator<T>
 		_validations.Remove(name);
 	}
 
-	protected Rule<T> GetRule(string name)
+	protected Rule<TEntity> GetRule(string name)
 	{
 		_validations.TryGetValue(name, out var value);
 		return value;

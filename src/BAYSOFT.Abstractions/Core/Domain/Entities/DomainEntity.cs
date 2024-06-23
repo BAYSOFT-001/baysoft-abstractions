@@ -1,28 +1,14 @@
-﻿using System.Linq;
+﻿using System;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities
 {
-	public abstract class DomainEntity<TIdType> : DomainEntity, IDomainEntity<TIdType>
+	public abstract class DomainEntity<TKey> : IDomainEntity<TKey>
+		where TKey : IEquatable<TKey>
 	{
-		public TIdType Id { get; set; }
-		public override void Update(IDomainEntity updatedEntity)
-		{
-			this.GetType()
-				.GetProperties()
-				.Where(property => !typeof(DomainEntity<TIdType>).GetProperties().Any(p =>p.Name == property.Name))
-				.ToList()
-				.ForEach(property => property.SetValue(this, updatedEntity.GetType().GetProperty(property.Name).GetValue(updatedEntity)));
-		}
+		public TKey Id { get; set; }
 	}
 
-	public abstract class DomainEntity : IDomainEntity
+	public abstract class DomainEntity : DomainEntity<int>, IDomainEntity<int>
 	{
-        public virtual void Update(IDomainEntity updatedEntity)
-        {
-            this.GetType()
-				.GetProperties()
-				.ToList()
-				.ForEach(property => property.SetValue(this, updatedEntity.GetType().GetProperty(property.Name).GetValue(updatedEntity)));
-        }
     }
 }

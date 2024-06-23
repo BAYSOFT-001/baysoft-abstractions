@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Version>8.0.6.6</Version>
+    <Version>8.0.6.7</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</RepositoryUrl>
     <PackageProjectUrl>https://github.com/BAYSOFT-001/baysoft-abstractions</PackageProjectUrl>
