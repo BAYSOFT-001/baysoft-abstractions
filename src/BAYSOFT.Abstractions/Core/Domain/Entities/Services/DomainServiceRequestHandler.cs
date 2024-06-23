@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
-	public abstract class DomainServiceRequestHandler<TKey, TEntity, TRequest> : DomainServiceBase<TKey, TEntity>, IDomainService<TKey, TEntity, TRequest>
-        where TRequest : DomainServiceRequest<TKey, TEntity>
-		where TEntity : IDomainEntity<TKey>
-		where TKey : IEquatable<TKey>
+	public abstract class DomainServiceRequestHandler<TEntity, TRequest> : DomainServiceBase<TEntity>, IDomainService<TEntity, TRequest>
+        where TRequest : DomainServiceRequest<TEntity>
+		where TEntity : IDomainEntityBase
 	{
         public DomainServiceRequestHandler() : base() { }
 		public DomainServiceRequestHandler(IStringLocalizer localizer) : base(localizer) { }
-		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TKey, TEntity> entityValidator) : base(localizer, entityValidator) { }
-		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TKey, TEntity> entityValidator, DomainValidator<TKey, TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
+		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator) : base(localizer, entityValidator) { }
+		public DomainServiceRequestHandler(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator) : base(localizer, entityValidator, domainValidator) { }
 
 		public abstract Task<TEntity> Handle(TRequest request, CancellationToken cancellationToken);
     }

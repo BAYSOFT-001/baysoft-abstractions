@@ -3,10 +3,9 @@ using System;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
-	public abstract class DomainServiceRequest<TKey, TEntity>
+	public abstract class DomainServiceRequest<TEntity>
         : IRequest<TEntity>
-		where TEntity : IDomainEntity<TKey>
-		where TKey : IEquatable<TKey>
+		where TEntity : IDomainEntityBase
 	{
         public TEntity Payload { get; set; }
         public DomainServiceRequest(TEntity payload)

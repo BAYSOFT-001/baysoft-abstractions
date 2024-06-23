@@ -6,13 +6,12 @@ using System.Linq;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 {
-	public abstract class DomainServiceBase<TKey, TEntity>
-		where TEntity : IDomainEntity<TKey>
-		where TKey : IEquatable<TKey>
+	public abstract class DomainServiceBase<TEntity>
+		where TEntity : IDomainEntityBase
 	{
 		private IStringLocalizer Localizer { get; set; }
-		private EntityValidator<TKey, TEntity> EntityValidator { get; set; }
-		private DomainValidator<TKey, TEntity> DomainValidator { get; set; }
+		private EntityValidator<TEntity> EntityValidator { get; set; }
+		private DomainValidator<TEntity> DomainValidator { get; set; }
 		public DomainServiceBase()
 		{
 		}
@@ -20,12 +19,12 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 		{
 			Localizer = localizer;
 		}
-		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TKey, TEntity> entityValidator)
+		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator)
 		{
 			Localizer = localizer;
 			EntityValidator = entityValidator;
 		}
-		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TKey, TEntity> entityValidator, DomainValidator<TKey, TEntity> domainValidator)
+		public DomainServiceBase(IStringLocalizer localizer, EntityValidator<TEntity> entityValidator, DomainValidator<TEntity> domainValidator)
 		{
 			Localizer = localizer;
 			EntityValidator = entityValidator;

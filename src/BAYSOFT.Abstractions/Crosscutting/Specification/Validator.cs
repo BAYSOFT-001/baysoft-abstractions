@@ -1,13 +1,11 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using FluentValidation.Results;
-using System;
 using System.Collections.Generic;
 
 namespace BAYSOFT.Abstractions.Crosscutting.Specification;
 
-public class Validator<TKey, TEntity>
-	where TEntity : IDomainEntity<TKey>
-	where TKey : IEquatable<TKey>
+public class Validator<TEntity>
+	where TEntity : IDomainEntityBase
 {
 	private readonly Dictionary<string, Rule<TEntity>> _validations = new Dictionary<string, Rule<TEntity>>();
 

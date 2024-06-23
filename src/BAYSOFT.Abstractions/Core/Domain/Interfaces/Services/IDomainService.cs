@@ -5,18 +5,16 @@ using System.Threading.Tasks;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Interfaces.Services
 {
-	public interface IDomainService<TKey, TEntity>
-		where TEntity : IDomainEntity<TKey>
-		where TKey : IEquatable<TKey>
+	public interface IDomainService<TEntity>
+		where TEntity : IDomainEntityBase
 	{
         Task Run(TEntity entity);
     }
 
-    public interface IDomainService<TKey, TEntity, TRequest>
+    public interface IDomainService<TEntity, TRequest>
         : IRequestHandler<TRequest, TEntity>
         where TRequest : IRequest<TEntity>
-		where TEntity : IDomainEntity<TKey>
-		where TKey : IEquatable<TKey>
+		where TEntity : IDomainEntityBase
 	{
     }
 }
