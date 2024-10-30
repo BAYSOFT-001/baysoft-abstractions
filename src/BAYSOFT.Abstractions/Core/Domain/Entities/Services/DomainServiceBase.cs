@@ -31,19 +31,20 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 			DomainValidator = domainValidator;
 		}
 
-		protected bool ValidateEntity(TEntity entity, bool throwException = true, string message = null)
+
+		protected bool ValidateEntity(EntityValidator<TEntity> entityValidator, TEntity entity, bool throwException = true, string message = null)
 		{
 			if (Localizer == null)
 			{
 				throw new ArgumentNullException(nameof(Localizer));
 			}
 
-			if (EntityValidator == null)
+			if (entityValidator == null)
 			{
-				throw new ArgumentNullException(nameof(EntityValidator));
+				throw new ArgumentNullException(nameof(entityValidator));
 			}
 
-			var result = EntityValidator.Validate(entity);
+			var result = entityValidator.Validate(entity);
 
 			if (!result.IsValid && throwException)
 			{
@@ -53,7 +54,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 						new EntityValidationException(
 							error.PropertyName,
 							error.FormattedMessagePlaceholderValues != null && error.FormattedMessagePlaceholderValues.Count > 0
-							? string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues?.Select(x => Localizer[x.Value!= null ? x.Value.ToString() : ""]).ToArray())
+							? string.Format(Localizer[error.ErrorMessage], error.FormattedMessagePlaceholderValues?.Select(x => Localizer[x.Value != null ? x.Value.ToString() : ""]).ToArray())
 							: Localizer[error.ErrorMessage]
 						)
 					).ToList());
@@ -61,8 +62,12 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 
 			return result.IsValid;
 		}
+		protected bool ValidateEntity(TEntity entity, bool throwException = true, string message = null)
+		{
+			return ValidateEntity(EntityValidator, entity, throwException, message);
+		}
 
-		protected bool ValidateDomain(TEntity entity, bool throwException = true, string message = null)
+		protected bool ValidateDomain(DomainValidator<TEntity> domainValidator, TEntity entity, bool throwException = true, string message = null)
 		{
 			if (Localizer == null)
 			{
@@ -71,10 +76,10 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 
 			if (EntityValidator == null)
 			{
-				throw new ArgumentNullException(nameof(DomainValidator));
+				throw new ArgumentNullException(nameof(domainValidator));
 			}
 
-			var result = DomainValidator.Validate(entity);
+			var result = domainValidator.Validate(entity);
 
 			if (!result.IsValid && throwException)
 			{
@@ -90,6 +95,10 @@ namespace BAYSOFT.Abstractions.Core.Domain.Entities.Services
 			}
 
 			return result.IsValid;
+		}
+		protected bool ValidateDomain(TEntity entity, bool throwException = true, string message = null)
+		{
+			return ValidateDomain(DomainValidator, entity, throwException, message);
 		}
 	}
 }
