@@ -37,12 +37,12 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization
 			{
 				Pluralizers = new List<IPluralizer>();
 			}
-			if (!Pluralizers.Any(p => p.Culture.Equals(pluralizer.Culture, StringComparison.OrdinalIgnoreCase)))
+			if (!Pluralizers.Any(p => p.Culture.StartsWith(pluralizer.Culture, StringComparison.OrdinalIgnoreCase)))
 			{
 				Pluralizers.Add(pluralizer);
 			}
 		}
-		public string Pluralize(string palavra, string culture)
+		public string Pluralize(string word, string culture)
 		{
 			if (Pluralizers == null || Pluralizers.Count == 0)
 			{
@@ -65,9 +65,9 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization
 			}
 			if (pluralizerToUse != null)
 			{
-				return pluralizerToUse.Pluralize(palavra);
+				return pluralizerToUse.Pluralize(word);
 			}
-			return palavra;
+			return word;
 		}
 	}
 }
