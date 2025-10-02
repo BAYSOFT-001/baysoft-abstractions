@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BAYSOFT.Abstractions.Crosscutting.Singularization;
+using BAYSOFT.Abstractions.Crosscutting.Singularization.English;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,9 +10,16 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.pt_br
 	{
 		public static IServiceCollection AddSpanishPluralizer(this IServiceCollection services)
 		{
-			Pluralizer.GetInstance().AddPluralizer(new SpanishPluralizer());
+			Pluralizer.GetInstance().AddSpanishPluralizer();
 
 			return services;
+		}
+
+		public static Pluralizer AddSpanishPluralizer(this Pluralizer pluralizer)
+		{
+			pluralizer.AddPluralizer(new SpanishPluralizer());
+
+			return pluralizer;
 		}
 	}
 	public class SpanishPluralizer : IPluralizer

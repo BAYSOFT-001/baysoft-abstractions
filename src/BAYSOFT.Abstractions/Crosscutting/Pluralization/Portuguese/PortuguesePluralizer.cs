@@ -8,9 +8,16 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.pt_br
 	{
 		public static IServiceCollection AddPortuguesePluralizer(this IServiceCollection services)
 		{
-			Pluralizer.GetInstance().AddPluralizer(new PortuguesePluralizer());
+			Pluralizer.GetInstance().AddPortuguesePluralizer();
 
 			return services;
+		}
+
+		public static Pluralizer AddPortuguesePluralizer(this Pluralizer pluralizer)
+		{
+			pluralizer.AddPluralizer(new PortuguesePluralizer());
+
+			return pluralizer;
 		}
 	}
 	public class PortuguesePluralizer : IPluralizer

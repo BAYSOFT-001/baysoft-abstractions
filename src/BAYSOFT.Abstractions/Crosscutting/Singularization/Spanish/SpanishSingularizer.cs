@@ -8,9 +8,16 @@ namespace BAYSOFT.Abstractions.Crosscutting.Singularization.Spanish
 	{
 		public static IServiceCollection AddSpanishSingularizer(this IServiceCollection services)
 		{
-			Singularizer.GetInstance().AddPluralizer(new SpanishSingularizer());
+			Singularizer.GetInstance().AddSpanishSingularizer();
 
 			return services;
+		}
+
+		public static Singularizer AddSpanishSingularizer(this Singularizer singularizer)
+		{
+			singularizer.AddSingularizer(new SpanishSingularizer());
+
+			return singularizer;
 		}
 	}
 	public class SpanishSingularizer : ISingularizer

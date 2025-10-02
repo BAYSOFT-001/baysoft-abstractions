@@ -32,7 +32,7 @@ namespace BAYSOFT.Abstractions.Crosscutting.Singularization
 			}
 			return Instance;
 		}
-		public void AddPluralizer(ISingularizer singularizer)
+		public void AddSingularizer(ISingularizer singularizer)
 		{
 			if (Singularizers == null)
 			{

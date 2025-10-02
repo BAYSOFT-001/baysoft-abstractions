@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BAYSOFT.Abstractions.Crosscutting.Singularization.Spanish;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -8,9 +9,16 @@ namespace BAYSOFT.Abstractions.Crosscutting.Singularization.Portuguese
 	{
 		public static IServiceCollection AddPortugueseSingularizer(this IServiceCollection services)
 		{
-			Singularizer.GetInstance().AddPluralizer(new PortugueseSingularizer());
+			Singularizer.GetInstance().AddPortugueseSingularizer();
 
 			return services;
+		}
+
+		public static Singularizer AddPortugueseSingularizer(this Singularizer singularizer)
+		{
+			singularizer.AddSingularizer(new PortugueseSingularizer());
+
+			return singularizer;
 		}
 	}
 	public class PortugueseSingularizer : ISingularizer
