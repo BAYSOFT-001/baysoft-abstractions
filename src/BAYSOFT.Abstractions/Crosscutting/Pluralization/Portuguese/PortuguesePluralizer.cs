@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.pt_br
+namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.Portuguese
 {
 	public static class PortuguesePluralizerExtensions
 	{
