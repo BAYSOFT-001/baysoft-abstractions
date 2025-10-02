@@ -62,10 +62,6 @@ namespace BAYSOFT.Abstractions.Crosscutting.Singularization.Portuguese
 			if (word.EndsWith("ns"))
 				return word[..^2] + "m";
 
-			// 3. termina em "res"/"ores"
-			if (word.EndsWith("res"))
-				return word[..^2]; // remove "es"
-
 			// 4. termina em "is" e antes era L
 			if (word.EndsWith("is") && word.Length > 2 && word[^3] == 'a')
 				return word[..^2] + "l"; // animais → animal
@@ -73,9 +69,8 @@ namespace BAYSOFT.Abstractions.Crosscutting.Singularization.Portuguese
 			// 5. termina em "es"
 			if (word.EndsWith("es"))
 			{
-				if (word.EndsWith("ses") || word.EndsWith("zes"))
-					return word[..^2]; // cruzes → cruz
-				return word[..^2]; // flores → flor
+				if (word.EndsWith("ses") || word.EndsWith("zes") || word.EndsWith("res"))
+					return word[..^2]; // remove "es"
 			}
 
 			// 6. termina em "s" após vogal
