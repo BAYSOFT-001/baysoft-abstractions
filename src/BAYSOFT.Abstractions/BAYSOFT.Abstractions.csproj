@@ -20,7 +20,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Localization" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.10" />
-    <PackageReference Include="ModelWrapper" Version="8.0.6.8" />
+    <PackageReference Include="ModelWrapper" Version="9.0.10" />
     <PackageReference Include="N.EntityFrameworkCore.Extensions" Version="8.0.0.12" />
     <PackageReference Include="System.Text.Encodings.Web" Version="9.0.10" />
   </ItemGroup>
