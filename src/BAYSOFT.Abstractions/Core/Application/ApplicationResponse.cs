@@ -23,8 +23,16 @@ namespace BAYSOFT.Abstractions.Core.Application
         protected ApplicationResponse(WrapRequest<TEntity> request, object data, string message = "Successful operation!", long? resultCount = null)
             : base(request, data, null, message, resultCount)
         {
-        }
-        protected ApplicationResponse(int statusCode, int internalCode, WrapRequest<TEntity> request, object data, Dictionary<string, object> notifications = null, string message = "Successful operation!", long? resultCount = null)
+		}
+		protected ApplicationResponse(int statusCode, WrapRequest<TEntity> request, object data, string message = "Successful operation!", long? resultCount = null)
+			: base(statusCode, statusCode, request, data, null, message, resultCount)
+		{
+		}
+		protected ApplicationResponse(int statusCode, int internalCode, WrapRequest<TEntity> request, object data, string message = "Successful operation!", long? resultCount = null)
+			: base(statusCode, internalCode, request, data, null, message, resultCount)
+		{
+		}
+		protected ApplicationResponse(int statusCode, int internalCode, WrapRequest<TEntity> request, object data, Dictionary<string, object> notifications = null, string message = "Successful operation!", long? resultCount = null)
             : base(statusCode, internalCode, request, data, notifications, message, resultCount)
         {
         }
