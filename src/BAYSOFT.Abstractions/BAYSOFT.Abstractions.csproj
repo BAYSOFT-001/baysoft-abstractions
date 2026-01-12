@@ -23,7 +23,6 @@
     <PackageReference Include="ModelWrapper" Version="10.0.1" />
     <PackageReference Include="N.EntityFrameworkCore.Extensions" Version="8.0.0.12" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.15.0" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BAYSOFT.Abstractions.Tools\BAYSOFT.Abstractions.Tools.csproj" />
+    <ProjectReference Include="..\BAYSOFT.Abstractions.Tools\BAYSOFT.Abstractions.Tools.csproj" />
   </ItemGroup>
 
 </Project>
