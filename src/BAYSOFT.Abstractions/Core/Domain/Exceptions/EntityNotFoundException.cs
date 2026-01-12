@@ -1,6 +1,7 @@
 ﻿using BAYSOFT.Abstractions.Core.Domain.Entities;
 using Microsoft.Extensions.Localization;
 using System;
+using System.Net;
 
 namespace BAYSOFT.Abstractions.Core.Domain.Exceptions
 {
@@ -26,7 +27,7 @@ namespace BAYSOFT.Abstractions.Core.Domain.Exceptions
     public class EntityNotFoundException : BaysoftException
     {
         public EntityNotFoundException(IStringLocalizer localizer, string nameofEntity)
-            : base(404, 4040000, string.Format(localizer["{0} not found!"], localizer[nameofEntity]))
+            : base((int)HttpStatusCode.NotFound, 4040000, string.Format(localizer["{0} not found!"], localizer[nameofEntity]))
 
         {
         }
