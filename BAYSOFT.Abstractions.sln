@@ -5,7 +5,7 @@ VisualStudioVersion = 18.1.11312.151 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BAYSOFT.Abstractions", "src\BAYSOFT.Abstractions\BAYSOFT.Abstractions.csproj", "{CA7ED451-4E31-4912-97F8-4A54723685C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAYSOFT.Abstractions.Tools", "BAYSOFT.Abstractions.Tools\BAYSOFT.Abstractions.Tools.csproj", "{6CDCD8D2-8983-4981-95B0-220EB719A18B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAYSOFT.Abstractions.Tools", "src\BAYSOFT.Abstractions.Tools\BAYSOFT.Abstractions.Tools.csproj", "{6CDCD8D2-8983-4981-95B0-220EB719A18B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{9B809A2D-B660-4523-8CCF-9E592520A37D}"
 	ProjectSection(SolutionItems) = preProject
