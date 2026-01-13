@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <Version>10.0.1.0</Version>
     <AssemblyVersion>10.0.1.1</AssemblyVersion>
+    <FileVersion>10.0.1.1</FileVersion>
   </PropertyGroup>
 
 
