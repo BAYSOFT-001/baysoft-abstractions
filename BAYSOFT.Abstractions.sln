@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.1.11312.151 d18.0
+VisualStudioVersion = 18.1.11312.151
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BAYSOFT.Abstractions", "src\BAYSOFT.Abstractions\BAYSOFT.Abstractions.csproj", "{CA7ED451-4E31-4912-97F8-4A54723685C0}"
 EndProject
@@ -11,6 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\main.yml = .github\workflows\main.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAYSOFT.Abstractions.TestConsole", "src\BAYSOFT.Abstractions.TestConsole\BAYSOFT.Abstractions.TestConsole.csproj", "{A6D65D3B-D05A-4978-91AB-B5586983F06E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{8C989F55-CA67-45D0-9599-617AD35A34FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1A2A36E7-EB9A-40CC-93A8-992A5AC46B7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +32,18 @@ Global
 		{6CDCD8D2-8983-4981-95B0-220EB719A18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CDCD8D2-8983-4981-95B0-220EB719A18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CDCD8D2-8983-4981-95B0-220EB719A18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6D65D3B-D05A-4978-91AB-B5586983F06E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6D65D3B-D05A-4978-91AB-B5586983F06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6D65D3B-D05A-4978-91AB-B5586983F06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6D65D3B-D05A-4978-91AB-B5586983F06E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA7ED451-4E31-4912-97F8-4A54723685C0} = {8C989F55-CA67-45D0-9599-617AD35A34FE}
+		{6CDCD8D2-8983-4981-95B0-220EB719A18B} = {8C989F55-CA67-45D0-9599-617AD35A34FE}
+		{A6D65D3B-D05A-4978-91AB-B5586983F06E} = {1A2A36E7-EB9A-40CC-93A8-992A5AC46B7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B5DC8ECB-CA6F-404C-ACD2-C87CE4EA5405}

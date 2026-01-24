@@ -1,4 +1,5 @@
-﻿using BAYSOFT.Abstractions.Crosscutting.Singularization;
+﻿using BAYSOFT.Abstractions.Crosscutting.Extensions;
+using BAYSOFT.Abstractions.Crosscutting.Singularization;
 using BAYSOFT.Abstractions.Crosscutting.Singularization.English;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -33,33 +34,42 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.Spanish
 		public string Culture { get { return "es-MX"; } }
 
 		public string Pluralize(string word)
-		{
-			if (string.IsNullOrWhiteSpace(word))
-				return word;
+        {
+			var originalCase = word.IdentifyCase();
 
-			word = word.Trim().ToLower();
+            word = PluralizeCore(word.ToKebabCase());
 
-			// 1. invariáveis
-			if (Invariables.Contains(word))
-				return word;
+			return word.ToCase(originalCase);
+        }
 
-			// 2. termina em vogal → +s
-			if (EndsWithVowel(word))
-				return word + "s";
+        private string PluralizeCore(string word)
+        {
+            if (string.IsNullOrWhiteSpace(word))
+                return word;
 
-			// 3. termina em Z → troca por "ces"
-			if (word.EndsWith("z"))
-				return word[..^1] + "ces";
+            word = word.Trim().ToLower();
 
-			// 4. termina em s/x átona → invariável
-			if ((word.EndsWith("s") || word.EndsWith("x")) && IsUnstressed(word))
-				return word;
+            // 1. invariáveis
+            if (Invariables.Contains(word))
+                return word;
 
-			// 5. regra padrão → +es
-			return word + "es";
-		}
+            // 2. termina em vogal → +s
+            if (EndsWithVowel(word))
+                return word + "s";
 
-		private bool EndsWithVowel(string word)
+            // 3. termina em Z → troca por "ces"
+            if (word.EndsWith("z"))
+                return word[..^1] + "ces";
+
+            // 4. termina em s/x átona → invariável
+            if ((word.EndsWith("s") || word.EndsWith("x")) && IsUnstressed(word))
+                return word;
+
+            // 5. regra padrão → +es
+            return word + "es";
+        }
+
+        private bool EndsWithVowel(string word)
 		{
 			char last = word[^1];
 			return "aeiouáéíóú".Contains(last);

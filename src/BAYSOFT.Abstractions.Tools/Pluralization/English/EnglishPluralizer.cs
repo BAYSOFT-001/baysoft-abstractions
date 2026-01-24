@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BAYSOFT.Abstractions.Crosscutting.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.English
 {
@@ -48,42 +49,51 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.English
 		};
 		public string Culture { get { return "en-US"; } }
 		public string Pluralize(string word)
-		{
-			if (string.IsNullOrWhiteSpace(word))
-				return word;
+        {
+			var originalCase = word.IdentifyCase();
 
-			word = word.Trim().ToLower();
+            word = PluralizeCore(word.ToKebabCase());
 
-			// 1. Irregulares
-			if (IrregularPlurals.ContainsKey(word))
-				return IrregularPlurals[word];
+			return word.ToCase(originalCase);
+        }
 
-			// 2. Invariáveis
-			if (Invariables.Contains(word))
-				return word;
+        private string PluralizeCore(string word)
+        {
+            if (string.IsNullOrWhiteSpace(word))
+                return word;
 
-			// 3. terminações especiais
-			if (word.EndsWith("s") || word.EndsWith("x") || word.EndsWith("z") ||
-				word.EndsWith("ch") || word.EndsWith("sh"))
-				return word + "es";
+            word = word.Trim().ToLower();
 
-			if (word.EndsWith("y") && word.Length > 1 && IsConsonant(word[^2]))
-				return word[..^1] + "ies";
+            // 1. Irregulares
+            if (IrregularPlurals.ContainsKey(word))
+                return IrregularPlurals[word];
 
-			if (word.EndsWith("f") && !FtoS.Contains(word))
-				return word[..^1] + "ves";
+            // 2. Invariáveis
+            if (Invariables.Contains(word))
+                return word;
 
-			if (word.EndsWith("fe") && !FtoS.Contains(word))
-				return word[..^2] + "ves";
+            // 3. terminações especiais
+            if (word.EndsWith("s") || word.EndsWith("x") || word.EndsWith("z") ||
+                word.EndsWith("ch") || word.EndsWith("sh"))
+                return word + "es";
 
-			if (word.EndsWith("o") && !OtoS.Contains(word))
-				return word + "es";
+            if (word.EndsWith("y") && word.Length > 1 && IsConsonant(word[^2]))
+                return word[..^1] + "ies";
 
-			// 4. regra padrão
-			return word + "s";
-		}
+            if (word.EndsWith("f") && !FtoS.Contains(word))
+                return word[..^1] + "ves";
 
-		private bool IsConsonant(char c)
+            if (word.EndsWith("fe") && !FtoS.Contains(word))
+                return word[..^2] + "ves";
+
+            if (word.EndsWith("o") && !OtoS.Contains(word))
+                return word + "es";
+
+            // 4. regra padrão
+            return word + "s";
+        }
+
+        private bool IsConsonant(char c)
 		{
 			return !"aeiou".Contains(char.ToLower(c));
 		}

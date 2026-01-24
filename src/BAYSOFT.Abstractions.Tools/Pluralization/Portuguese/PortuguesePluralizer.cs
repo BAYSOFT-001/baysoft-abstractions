@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BAYSOFT.Abstractions.Crosscutting.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -71,52 +72,61 @@ namespace BAYSOFT.Abstractions.Crosscutting.Pluralization.Portuguese
 		}
 
 		private string PluralizeSimple(string word)
-		{
-			if (Excecoes.ContainsKey(word))
-				return Excecoes[word];
+        {
+			var originalCase = word.IdentifyCase();
 
-			if (EndsWithAny(word, "a", "e", "i", "o", "u"))
-				return word + "s";
+            word = PluralizeCore(word.ToKebabCase());
 
-			if (EndsWithAny(word, "r", "z"))
-				return word + "es";
+			return word.ToCase(originalCase);
+        }
 
-			if (word.EndsWith("s"))
-			{
-				if (IsOxytone(word)) return word + "es";
-				return word; // invariável
-			}
+        private string PluralizeCore(string word)
+        {
+            if (Excecoes.ContainsKey(word))
+                return Excecoes[word];
 
-			if (word.EndsWith("m"))
-				return word[..^1] + "ns";
+            if (EndsWithAny(word, "a", "e", "i", "o", "u"))
+                return word + "s";
 
-			if (word.EndsWith("ão"))
-				return word[..^2] + "ões"; // padrão
+            if (EndsWithAny(word, "r", "z"))
+                return word + "es";
 
-			if (word.EndsWith("il"))
-			{
-				if (IsOxytone(word)) return word[..^2] + "is";
-				return word[..^2] + "eis";
-			}
+            if (word.EndsWith("s"))
+            {
+                if (IsOxytone(word)) return word + "es";
+                return word; // invariável
+            }
 
-			if (word.EndsWith("l"))
-			{
-				char beforeL = word[^2];
-				if ("aeiou".Contains(beforeL))
-					return word[..^1] + "is";
-				return word[..^1] + "eis";
-			}
+            if (word.EndsWith("m"))
+                return word[..^1] + "ns";
 
-			if (word.EndsWith("x"))
-				return word;
+            if (word.EndsWith("ão"))
+                return word[..^2] + "ões"; // padrão
 
-			if (word.EndsWith("n"))
-				return word + "s";
+            if (word.EndsWith("il"))
+            {
+                if (IsOxytone(word)) return word[..^2] + "is";
+                return word[..^2] + "eis";
+            }
 
-			return word + "s";
-		}
+            if (word.EndsWith("l"))
+            {
+                char beforeL = word[^2];
+                if ("aeiou".Contains(beforeL))
+                    return word[..^1] + "is";
+                return word[..^1] + "eis";
+            }
 
-		private bool EndsWithAny(string word, params string[] finais) =>
+            if (word.EndsWith("x"))
+                return word;
+
+            if (word.EndsWith("n"))
+                return word + "s";
+
+            return word + "s";
+        }
+
+        private bool EndsWithAny(string word, params string[] finais) =>
 			finais.Any(f => word.EndsWith(f));
 
 		private bool IsOxytone(string word)
